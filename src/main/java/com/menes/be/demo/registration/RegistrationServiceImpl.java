@@ -22,7 +22,7 @@ public class RegistrationServiceImpl implements RegistrationService{
         }
         try {
             User user = new User();
-            user.setBod(request.getDob());
+            user.setDob(request.getDob());
             user.setEmail(request.getEmail());
             user.setPassword(passwordEncoder.encode(request.getPassword()));
             user.setRole(Role.USER);

@@ -16,9 +16,9 @@ import java.util.Collections;
 @Entity
 @Table(name = "_user")
 public class User implements UserDetails {
-    public User(String fullName, LocalDate bod, String email, String password, Role role) {
+    public User(String fullName, LocalDate dob, String email, String password, Role role) {
         this.fullName = fullName;
-        this.bod = bod;
+        this.dob = dob;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -41,7 +41,7 @@ public class User implements UserDetails {
     @Column(
             nullable = false
     )
-    private LocalDate bod;
+    private LocalDate dob;
     @Column(
             nullable = false,
             unique = true

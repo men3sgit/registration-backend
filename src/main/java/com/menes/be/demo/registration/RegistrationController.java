@@ -9,19 +9,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/api/v1/auth/sign-up")
+@RequestMapping(path = "/api/v1/auth/registration")
 public class RegistrationController {
     private final RegistrationService service;
+
     @PostMapping
-    public ResponseEntity<RegistrationResponse> registerNewUser(@RequestBody RegistrationRequest request){
+    public ResponseEntity<RegistrationResponse> registerNewUser(@RequestBody
+                                                                RegistrationRequest request) {
         RegistrationResponse response = RegistrationResponse.builder()
                 .token(service.register(request))
                 .build();
-
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-    @GetMapping
-    public String hello(){
-        return "it works";
+    @PostMapping("/haha")
+    public ResponseEntity<String> hello(@RequestBody
+                                                                RegistrationRequest request) {
+        return new ResponseEntity<>("Hello", HttpStatus.CREATED);
     }
+
+
 }
