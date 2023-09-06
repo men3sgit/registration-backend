@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -23,18 +21,19 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(
-                authorized -> {
-                    authorized.requestMatchers(
-                            new AntPathRequestMatcher("/api/v1/auth/registration/**")
-                    ).permitAll()
-                            .anyRequest().authenticated();
-                }
-        ).formLogin(withDefaults());
+                        authorized -> {
+                            authorized.requestMatchers("/").permitAll();
+                        }
+                ).formLogin(withDefaults());
         return http.build();
     }
+
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/api/v1/auth/registration/**");
+        return (web) -> web.ignoring().requestMatchers(
+                "/api/v1/auth/registration/**",
+                "api/v*/unsecured/**"
+        );
     }
 
 

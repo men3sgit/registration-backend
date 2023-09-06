@@ -61,6 +61,7 @@ public class User implements UserDetails {
     private Boolean locked;
 
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority granted = new SimpleGrantedAuthority(role.toString());

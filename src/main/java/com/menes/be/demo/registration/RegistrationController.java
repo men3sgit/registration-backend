@@ -21,11 +21,5 @@ public class RegistrationController {
                 .build();
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-    @PostMapping("/haha")
-    public ResponseEntity<String> hello(@RequestBody
-                                                                RegistrationRequest request) {
-        return new ResponseEntity<>("Hello", HttpStatus.CREATED);
-    }
-
 
 }
