@@ -11,7 +11,7 @@ import java.util.*;
 
 public interface UserService extends UserDetailsService {
 
-    public void signUpUser(User user);
+    public Long signUpUser(User user);
 
     List<UserDTO> getUsers();
 }

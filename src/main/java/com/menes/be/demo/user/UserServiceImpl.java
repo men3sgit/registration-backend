@@ -23,12 +23,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void signUpUser(User user) {
+    public Long signUpUser(User user) {
         if(repository.findByEmail(user.getEmail()).isPresent()){
            throw new ApiRequestException("Email taken");
         }
         repository.save(user);
-
+    return user.getId();
     }
 
     @Override
